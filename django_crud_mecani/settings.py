@@ -129,3 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #cors autiracion
 CORS_ALLOWED_ORIGINS = []
+
+# Redirección para usuarios no autenticados
+LOGIN_URL = '/login/'

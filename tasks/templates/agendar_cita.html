@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Agendar Cita - Gestión de Taller{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-plus me-2"></i>Agendar Nueva Cita</h4>
+            </div>
+            <div class="card-body p-4 bg-white">
+                <form method="POST" action="">
+                    {% csrf_token %} <h5 class="mb-3 text-secondary border-bottom pb-2">Datos del Vehículo</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="placa" class="form-label fw-bold">Placa</label>
+                            <input type="text" class="form-control" id="placa" name="placa" placeholder="Ej: ABC-123" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="marca" class="form-label fw-bold">Marca y Modelo</label>
+                            <input type="text" class="form-control" id="marca" name="marca" placeholder="Ej: Chery Tiggo" required>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Detalles de la Cita</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="fecha" class="form-label fw-bold">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="hora" class="form-label fw-bold">Hora</label>
+                            <input type="time" class="form-control" id="hora" name="hora" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="servicio" class="form-label fw-bold">Tipo de Servicio</label>
+                        <select class="form-select" id="servicio" name="servicio" required>
+                            <option value="" selected disabled>Seleccione un servicio...</option>
+                            <option value="mantenimiento">Mantenimiento General</option>
+                            <option value="motor">Revisión de Motor</option>
+                            <option value="electrico">Diagnóstico Eléctrico</option>
+                            <option value="frenos">Revisión de Frenos</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">Guardar Cita</button>
+                        <a href="#" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

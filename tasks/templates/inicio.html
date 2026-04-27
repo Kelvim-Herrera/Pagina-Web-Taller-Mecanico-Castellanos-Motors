@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Taller Mecánico</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 50px; text-align: center; }
-        .caja { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9; }
-    </style>
-</head>
-<body>
-    <div class="caja">
-        <h1>Bienvenido al Taller Mecánico</h1>
-        <h2>Hola, {{ request.user.username }}</h2>
-        <p>Has ingresado al sistema con éxito.</p>
+{% extends "base.html" %}
+
+{% block title %}Inicio - Gestión de Taller{% endblock %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
+        <div class="container-fluid py-5 text-center">
+            <h1 class="display-5 fw-bold text-primary">Bienvenido a AutoFix</h1>
+            <p class="col-md-8 mx-auto fs-4 mt-3">Sistema de gestión integral. Desde aquí puedes administrar tus citas, revisar vehículos y controlar el inventario de repuestos.</p>
+            <a href="/agendar/" class="btn btn-primary btn-lg mt-3">Agendar Cita Ahora</a>
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}
