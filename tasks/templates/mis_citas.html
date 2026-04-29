@@ -19,7 +19,7 @@
                 {% for cita in citas %}
                 <tr>
                     <td class="align-middle">{{ cita.fecha_hora|date:"d/m/Y H:i" }}</td>
-                    <td class="align-middle">{{ cita.vehiculo.marca }}</td>
+                    <td class="align-middle">{{ cita.vehiculo.marca }}  {{ cita.vehiculo.modelo }}</td>
                     <td class="align-middle">{{ cita.vehiculo.placa }}</td>
                     <td class="align-middle">{{ cita.motivo_servicio }}</td>
                     <td class="align-middle">

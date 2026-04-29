@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Cita, Vehiculo
+from .models import Cita, Vehiculo, Repuesto
 
 # Este decorador (@) es el primer nivel de "Roles y Privilegios". 
 # Le dice a Django: "Expulsa a los visitantes anónimos, solo usuarios con cuenta pueden ver esto".
@@ -18,6 +18,8 @@ def agendar_cita(request):
         # 1. Atrapamos los datos del HTML
         v_placa = request.POST.get('placa')
         v_marca = request.POST.get('marca')
+        v_modelo = request.POST.get('modelo')
+        v_anio = request.POST.get('anio')
         v_fecha = request.POST.get('fecha')
         v_hora = request.POST.get('hora')
         v_servicio = request.POST.get('servicio')
@@ -28,8 +30,8 @@ def agendar_cita(request):
             defaults={
                 'propietario': request.user,
                 'marca': v_marca,
-                'modelo': 'No especificado', 
-                'anio': 2026 
+                'modelo': v_modelo,
+                'anio': v_anio 
             }
         )
 
@@ -101,3 +103,23 @@ def mis_citas(request):
         'citas': citas_usuario
     }
     return render(request, 'mis_citas.html', contexto) 
+
+@login_required
+def mis_vehiculos(request):
+    # Buscamos los vehículos que le pertenecen al usuario logueado
+    vehiculos_usuario = Vehiculo.objects.filter(propietario=request.user)
+    
+    contexto = {
+        'vehiculos': vehiculos_usuario
+    }
+    return render(request, 'mis_vehiculos.html', contexto)
+
+@login_required
+def inventario(request):
+    # Pedimos TODOS los registros de la tabla Repuesto
+    lista_repuestos = Repuesto.objects.all()
+    
+    contexto = {
+        'repuestos': lista_repuestos
+    }
+    return render(request, 'inventario.html', contexto)
