@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Mis Citas Agendadas</h2>
+    
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-striped table-hover mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha y Hora</th>
+                    <th>Vehículo</th>
+                    <th>Placa</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td class="align-middle">{{ cita.fecha_hora|date:"d/m/Y H:i" }}</td>
+                    <td class="align-middle">{{ cita.vehiculo.marca }}</td>
+                    <td class="align-middle">{{ cita.vehiculo.placa }}</td>
+                    <td class="align-middle">{{ cita.motivo_servicio }}</td>
+                    <td class="align-middle">
+                        <span class="badge {% if cita.estado == 'PENDIENTE' %}bg-warning text-dark{% elif cita.estado == 'CONFIRMADA' %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ cita.estado }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">No tienes citas agendadas aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
