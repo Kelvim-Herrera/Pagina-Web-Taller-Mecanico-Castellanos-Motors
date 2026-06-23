@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w_2%83ymt@e$8)2jt!paizy-02zzj19dpq_7%4+&8wjcu9e646
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
      "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
@@ -121,6 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Le decimos a Render dónde debe recolectar los archivos de diseño
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -140,3 +143,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'correo_del_taller@gmail.com' # El correo que enviará los mensajes
 EMAIL_HOST_PASSWORD = 'clave_secreta_de_aplicacion' # Una clave especial que nos da Google
+
+# confia en render perro
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
