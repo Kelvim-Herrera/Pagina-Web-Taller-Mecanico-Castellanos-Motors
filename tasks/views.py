@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Cita, Vehiculo, Repuesto
+
 
 
 # Este decorador (@) es el primer nivel de "Roles y Privilegios".
@@ -144,3 +145,13 @@ def cerrar_sesion(request):
     logout(request)
     # Después de cerrar sesión, se envia de vuelta a la página de inicio
     return redirect('inicio')
+
+@login_required
+def detalle_repuesto(request, repuesto_id):
+    # Buscamos el repuesto específico por su ID
+    repuesto = get_object_or_404(Repuesto, id=repuesto_id)
+    
+    contexto = {
+        'repuesto': repuesto
+    }
+    return render(request, 'detalle_repuesto.html', contexto)

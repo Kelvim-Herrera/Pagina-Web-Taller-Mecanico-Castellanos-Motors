@@ -13,13 +13,15 @@
                     <th>Cantidad Disponible</th>
                     <th>Precio</th>
                 </tr>
-            </thead>
+            </thead> <th>Acción</th>
             <tbody>
-                {% for repuesto in repuestos %}
+                {% for repuesto in repuestos %} <td>
                 <tr>
                     <td class="align-middle fw-bold">{{ repuesto.nombre }}</td>
                     <td class="align-middle">{{ repuesto.descripcion }}</td>
+                    <td class="align-middle">${{ repuesto.precio }}</td>
                     <td class="align-middle">
+                        <a href="{% url 'detalle_repuesto' repuesto.id %}" class="btn btn-info btn-sm text-white">Ver Detalles</a>
                         <span class="badge {% if repuesto.cantidad_disponible > 0 %}bg-success{% else %}bg-danger{% endif %} fs-6">
                             {{ repuesto.cantidad_disponible }}
                         </span>

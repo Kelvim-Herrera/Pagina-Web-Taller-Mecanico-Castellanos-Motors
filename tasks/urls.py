@@ -15,6 +15,7 @@ urlpatterns = [
     path("mis-vehiculos/", views.mis_vehiculos, name="mis_vehiculos"),
     path("inventario/", views.inventario, name="inventario"),
     path('cerrar-sesion/', views.cerrar_sesion, name='cerrar_sesion'),
+    path('repuesto/<int:repuesto_id>/', views.detalle_repuesto, name='detalle_repuesto'),
 
     # Rutas para recuperar contraseña
     path('recuperar-password/', auth_views.PasswordResetView.as_view(template_name='password_reset.html'), name='password_reset'),

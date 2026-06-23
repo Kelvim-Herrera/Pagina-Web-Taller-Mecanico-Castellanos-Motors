@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <a href="{% url 'inventario' %}" class="btn btn-outline-secondary mb-3">
+                <i class="bi bi-arrow-left"></i> Volver al Inventario
+            </a>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white p-3">
+                    <h3 class="mb-0">Detalle del Producto</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="text-primary fw-bold">{{ repuesto.nombre }}</h2>
+                            <p class="fs-5 text-muted">{{ repuesto.descripcion }}</p>
+                            
+                            <hr>
+                            
+                            <h4 class="mb-3">Precio: <span class="text-success">${{ repuesto.precio }}</span></h4>
+                            
+                            <p class="mb-1"><strong>Disponibilidad:</strong> 
+                                <span class="badge {% if repuesto.cantidad_disponible > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                    {{ repuesto.cantidad_disponible }} en stock
+                                </span>
+                            </p>
+                        </div>
+                        
+                        <div class="col-md-4 d-flex align-items-center justify-content-center mt-3 mt-md-0">
+                            <a href="https://wa.me/584145679655?text=Hola,%20me%20interesa%20solicitar%20el%20repuesto:%20{{ repuesto.nombre }}%20que%20cuesta%20${{ repuesto.precio }}." 
+                               class="btn btn-success btn-lg w-100 shadow" target="_blank">
+                                <i class="bi bi-whatsapp"></i> Solicitar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
