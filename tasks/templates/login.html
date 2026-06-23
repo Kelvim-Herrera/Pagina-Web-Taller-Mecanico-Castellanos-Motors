@@ -19,6 +19,9 @@
                     <div class="mb-4">
                         <label class="form-label fw-bold">Contraseña</label>
                         <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
+                       <div class="mt-2 text-end">
+                             <a href="{% url 'password_reset' %}" class="text-decoration-none text-warning">¿Olvidó su Contraseña?</a>
+                    </div> 
                     </div>
                     <button type="submit" class="btn btn-primary w-100 btn-lg">Entrar</button>
                 </form>

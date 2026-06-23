@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w_2%83ymt@e$8)2jt!paizy-02zzj19dpq_7%4+&8wjcu9e646
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -132,3 +132,11 @@ CORS_ALLOWED_ORIGINS = []
 
 # Redirección para usuarios no autenticados
 LOGIN_URL = '/login/'
+
+# Configuración para que Django envíe correos automáticamente
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'correo_del_taller@gmail.com' # El correo que enviará los mensajes
+EMAIL_HOST_PASSWORD = 'clave_secreta_de_aplicacion' # Una clave especial que nos da Google

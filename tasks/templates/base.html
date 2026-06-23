@@ -21,13 +21,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/agendar/">Agendar Cita</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'mis_citas' %}">Mis Citas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'mis_vehiculos' %}">Mis Vehículos</a></li>
-                </ul>
+ <ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+    
+    {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="/agendar/">Agendar Cita</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'mis_citas' %}">Mis Citas</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'mis_vehiculos' %}">Mis Vehículos</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a></li>
+        
+        <li class="nav-item ms-2">
+            <a class="btn btn-outline-danger btn-sm mt-1" href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+        </li>
+        
+    {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a></li>
+        <li class="nav-item"><a class="btn btn-primary btn-sm mt-1 ms-2" href="{% url 'registro' %}">Registrarse</a></li>
+    {% endif %}
+</ul>
             </div>
         </div>
     </nav>
