@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
+from rest_framework import viewsets
+from .serializers import RepuestoSerializer, CitaSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -54,6 +56,15 @@ def agendar_cita(request):
         return redirect("inicio")
 
     return render(request, "agendar_cita.html")
+
+    # Vistas de la API
+class RepuestoViewSet(viewsets.ModelViewSet):
+    queryset = Repuesto.objects.all()
+    serializer_class = RepuestoSerializer
+
+class CitaViewSet(viewsets.ModelViewSet):
+    queryset = Cita.objects.all()
+    serializer_class = CitaSerializer
 
 
 def login_view(request):

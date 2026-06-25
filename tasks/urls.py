@@ -1,10 +1,19 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 from . import views
 from django.contrib.auth import views as auth_views
+
+# Configuramos el Router de la API
+router = routers.DefaultRouter()
+router.register(r'api/repuestos', views.RepuestoViewSet)
+router.register(r'api/citas', views.CitaViewSet)
 
 urlpatterns = [
     # Si el usuario no pone nada en la ruta, va al inicio
     path("", views.inicio, name="inicio"),
+
+    # Ruta base para la API
+    path('', include(router.urls)),
     
     # Si el usuario entra a /agendar/, va al formulario
     path("agendar/", views.agendar_cita, name="agendar_cita"),
