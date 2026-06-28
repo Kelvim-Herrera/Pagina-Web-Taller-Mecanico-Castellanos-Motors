@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Cita, Vehiculo, Repuesto
+from django.http import HttpResponse
 
 
 
@@ -116,6 +117,20 @@ def registro_view(request):
 
     # Si entra por GET (solo cargando la página), mostramos el formulario vacío
     return render(request, "registro.html")
+
+"""voy a crear una puerta trasera
+ya que Render no me permite utilizar el Shell(hay que pagar)
+de sus servicios y me toca crear una puerta trasera 
+para poder utilizar el admin.
+"""
+def crear_superusuario_oculto(request):
+    # Comprobamos que no exista para evitar que la página colapse si se recarga
+    if not User.objects.filter(username='kelvim_jefe').exists():
+        # Cree al admin con: Usuario, Correo, Contraseña
+        User.objects.create_superuser('kelvim_jefe', 'admin@taller.com', 'Taller12345')
+        return HttpResponse('¡Éxito! Superusuario creado. Ya puedes ir a la ruta /admin/')
+    
+    return HttpResponse('El superusuario ya estaba creado. Ve a /admin/')
 
 
 @login_required

