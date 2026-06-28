@@ -19,6 +19,7 @@ urlpatterns = [
     path("agendar/", views.agendar_cita, name="agendar_cita"),
 
     path("login/", views.login_view, name="login"),
+    path('perfil/', views.perfil_usuario, name='perfil'),
     path("registro/", views.registro_view, name="registro"),
     path("mis-citas/", views.mis_citas, name="mis_citas"),
     path("mis-vehiculos/", views.mis_vehiculos, name="mis_vehiculos"),

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Mi Perfil</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'perfil' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" value="{{ usuario.first_name }}" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" value="{{ usuario.last_name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" name="correo" class="form-control" value="{{ usuario.email }}" required>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="submit" name="actualizar_perfil" class="btn btn-success">
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <div class="text-center mt-4">
+                        <h5 class="text-danger">Zona de Peligro</h5>
+                        <p class="text-muted small">Una vez que elimines tu cuenta, no hay vuelta atrás.</p>
+                        
+                        <form method="POST" action="{% url 'perfil' %}" onsubmit="return confirm('¿Estás 100% seguro de que deseas eliminar tu cuenta?');">
+                            {% csrf_token %}
+                            <button type="submit" name="eliminar_cuenta" class="btn btn-outline-danger">
+                                Eliminar mi cuenta permanentemente
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

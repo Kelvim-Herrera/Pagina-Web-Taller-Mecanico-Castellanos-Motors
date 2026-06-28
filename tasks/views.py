@@ -166,3 +166,27 @@ def detalle_repuesto(request, repuesto_id):
         'repuesto': repuesto
     }
     return render(request, 'detalle_repuesto.html', contexto)
+
+@login_required
+def perfil_usuario(request):
+    usuario = request.user # usuario logueado 
+
+    if request.method == 'POST':
+        # Si el usuario hizo clic en el botón rojo de eliminar
+        if 'eliminar_cuenta' in request.POST:
+            usuario.delete() # (Eliminación)
+            messages.success(request, "Tu cuenta ha sido eliminada permanentemente.")
+            return redirect('inicio')
+
+        # Si el usuario hizo clic en el botón de guardar cambios
+        elif 'actualizar_perfil' in request.POST:
+            usuario.first_name = request.POST.get('nombre')
+            usuario.last_name = request.POST.get('apellido')
+            usuario.email = request.POST.get('correo')
+            usuario.username = request.POST.get('correo') # Mantenemos el correo como username
+            usuario.save() # (Actualización)
+            
+            messages.success(request, "Tu perfil ha sido actualizado correctamente.")
+            return redirect('perfil')
+
+    return render(request, 'perfil.html', {'usuario': usuario})
